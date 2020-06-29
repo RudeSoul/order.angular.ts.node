@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="add-order h-flex h-flex-center ">
+                        <button class="btn btn-custom h-mb-40 " type="submit"
+                            (click)="showForm()">{{this.btnText}}</button>
+                    </div>
+
+                    <div class="col s5">
+                        <div [ngClass]="status ? 'h-visible' : 'h-hidden'">
+
+                            <form #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)">
+                                <input type="hidden" name="_id" #_id="ngModel"
+                                    [(ngModel)]="orderService.selectedOrder._id">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="productId" #name="ngModel"
+                                            [(ngModel)]="orderService.selectedOrder.productId"
+                                            placeholder="Give Product Id" required>
+                                        <label>Product Id :
+                                            <label class="red-text">*</label>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="productAmount" #name="ngModel"
+                                            [(ngModel)]="orderService.selectedOrder.productAmount"
+                                            placeholder="how many?">
+                                        <label>how many item :</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" name="userName" #name="ngModel"
+                                            [(ngModel)]="orderService.selectedOrder.userName" placeholder="For Whom?">
+                                        <label>User Name :</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <button class="btn btn-custom right" type="button"
+                                            (click)="resetForm(orderForm)">Reset</button>
+                                        <button class="btn btn-custom right" type="submit"
+                                            [disabled]="!orderForm.valid">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="col s7">
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr>
+                                    <th>Product Id</th>
+                                    <th>Product Amount</th>
+                                    <th>To</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tr *ngFor="let ord of orderService.orders">
+                                <td>{{ord.productId}}</td>
+                                <td>{{ord.productAmount}}</td>
+                                <td>{{ord.userName}}</td>
+                                <td>
+                                    <a class="action-btn" (click)="onEdit(ord)">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a class="action-btn" (click)="onDelete(ord._id,orderForm)">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

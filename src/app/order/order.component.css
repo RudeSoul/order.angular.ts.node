@@ -1,0 +1,22 @@
+.h-mb-40 {
+  margin-bottom: 40px;
+}
+
+.h-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.h-flex-center {
+  justify-content: space-around;
+
+}
+
+.h-visible {
+  visibility: visible;
+}
+
+.h-hidden {
+  visibility: hidden;
+}
